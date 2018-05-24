@@ -41,9 +41,12 @@ public class MainActivity extends AppCompatActivity {
     //프래그먼트 변경 시
     public void onFragmentChanged(int index) {
         if (index == 0) {
-            getSupportFragmentManager().beginTransaction().replace(R.id.container, fragmentB).commit();
+            getSupportFragmentManager().beginTransaction().replace(R.id.container, fragmentB).addToBackStack(null).commit();
+            //If you add multiple changes to the transaction—such as another add() or remove()—and call addToBackStack(),
+            // then all changes applied before you call commit() are added to the back stack as a single transaction
+            // and the Back button reverses them all together.
         } else if (index == 1) {
-            getSupportFragmentManager().beginTransaction().replace(R.id.container, fragmentA).commit();
+            getSupportFragmentManager().beginTransaction().replace(R.id.container, fragmentA).addToBackStack(null).commit();
         }
     }
 
